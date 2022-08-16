@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import DateModel from '../classes/Date';
 import { AmountDaysInMonth, DaysOfWeek, IDay, INote } from './types';
 
@@ -12,8 +13,9 @@ export function checkLeapYear(year: number) : boolean {
 }
 
 
-export function fetchDays(numberYearInSelect: number, numberMonthInSelect: number, month: IDay[]) 
-  {
+export function useFetchDays(numberYearInSelect: number, numberMonthInSelect: number, month: IDay[]) 
+{
+    useMemo(() => {
       let myDate = new Date(numberYearInSelect, numberMonthInSelect, 1);
       let monthAmount = getInMonthAmountDays(numberMonthInSelect);
       if(checkLeapYear(myDate.getFullYear()) && numberMonthInSelect == 1) monthAmount++; //проверка високосного года
@@ -22,7 +24,9 @@ export function fetchDays(numberYearInSelect: number, numberMonthInSelect: numbe
           month.push({numberDay: i, dayOfWeek: DaysOfWeek.get(dayOfWeek)});
           dayOfWeek == 6 ? dayOfWeek = 0 : dayOfWeek++;
       }
-  }
+    }
+  ,[numberMonthInSelect, numberYearInSelect])
+}
 
 export function checkDayPassed(dateSelect: DateModel) : boolean
 {

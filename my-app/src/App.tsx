@@ -4,7 +4,7 @@ import { DaysOfWeek, Months, IDay, INote } from './types/types';
 import MonthComponent from './components/MonthComponent/MonthComponent';
 import MySelect from './components/UI/Select/MySelect';
 import { useYears } from './hooks/useYears';
-import { checkLeapYear, fetchDays, getInMonthAmountDays } from './types/functions';
+import { checkLeapYear, useFetchDays, getInMonthAmountDays } from './types/functions';
 import Arrow, { ArrowVariants } from './components/UI/Arrow/ArrowLeft';
 
 
@@ -18,8 +18,7 @@ const App = () => {
   const [Years] = useState<number[]>([]); 
   useYears(Years, nowDate.getFullYear());
   const [notes, setNotes] = useState<INote[]>([]);
-  
-  fetchDays(numberYearInSelect, numberMonthInSelect, month);
+  useFetchDays(numberYearInSelect, numberMonthInSelect, month);
 
   function decreaseNumberMonth(){
     if(numberMonthInSelect===0 && Years.includes(numberYearInSelect-1)) {setNumberYearInSelect(numberYearInSelect-1); setNumberMonthInSelect(11);}
