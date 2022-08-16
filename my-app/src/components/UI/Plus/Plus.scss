@@ -1,0 +1,14 @@
+.add{
+    justify-content: center;
+    display: flex;
+}
+
+
+.plus{
+    height: 28px;
+    width: 28px;
+    border: 1px solid transparent;
+    &:hover{
+        border: 1px solid burlywood;
+    }
+}

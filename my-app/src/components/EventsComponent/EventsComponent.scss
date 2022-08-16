@@ -1,0 +1,39 @@
+.eventBlock{
+    color: rgb(132, 185, 183);
+    font: normal 700 16px cursive;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 68px;
+}
+
+.time{
+    padding-left: 30px;
+    padding-top: 15px;
+}
+
+.event{
+    padding-left: 6px;
+    word-wrap: break-word;
+}
+
+.menuForEvents {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    margin-inline: 40px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    opacity:0; /*Элемент полностью прозрачный (невидимый)*/
+    transition: 1s; /*Скорость перехода состояния элемента*/
+    animation: show 0.7s 1; /* Указываем название анимации, её время и количество повторов*/
+    animation-fill-mode: forwards; /* Чтобы элемент оставался в конечном состоянии анимации */
+    
+    @keyframes show{
+        0%{
+        opacity:0;
+        }
+        100% {
+        opacity:1;
+        }
+    }
+}

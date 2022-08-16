@@ -1,0 +1,12 @@
+.delete{
+    border: 1 px solid gray;
+    &:hover{
+        background-color: rgb(202, 173, 173);
+    }
+    width: max-content;
+}
+
+.trash{
+    height: 18px;
+    width: 18px;
+}

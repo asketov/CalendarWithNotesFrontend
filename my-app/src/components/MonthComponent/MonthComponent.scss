@@ -1,0 +1,8 @@
+.MonthComponent{
+    display: grid;
+    grid-template-columns: repeat(6, 165px);
+    grid-template-rows: (6, 120px);
+    width: max-content;
+    height: max-content;
+}
+
