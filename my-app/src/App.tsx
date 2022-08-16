@@ -4,10 +4,9 @@ import { DaysOfWeek, Months, IDay, INote } from './types/types';
 import MonthComponent from './components/MonthComponent/MonthComponent';
 import MySelect from './components/UI/Select/MySelect';
 import { useYears } from './hooks/useYears';
-import { checkLeapYear, useFetchDays, getInMonthAmountDays } from './types/functions';
+import { checkLeapYear, getInMonthAmountDays } from './types/functions';
 import Arrow, { ArrowVariants } from './components/UI/Arrow/ArrowLeft';
-
-
+import { useFetchDays } from './hooks/useFetchDays';
 
 
 const App = () => {
