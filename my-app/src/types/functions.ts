@@ -12,8 +12,6 @@ export function checkLeapYear(year: number) : boolean {
 
 }
 
-
-
 export function checkDayPassed(dateSelect: DateModel) : boolean
 {
     let dateNow = new Date();

@@ -4,6 +4,7 @@ export default class DateModel {
     year:number;
     month: number;
     day: number;
+    
     constructor(year: number, month: number, day: number) {
         this.year = year;
         this.month = month;

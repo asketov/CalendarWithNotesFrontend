@@ -2,20 +2,19 @@ import { INote } from './../types/types';
 import axios from 'axios';
 import DateModel from '../classes/Date';
 
-
+const url : string = "https://localhost:44340/note/";
 
 export async function getNotes(date: DateModel) {
-    
     let notes : INote[];
     await axios.get<INote[]>(
-        'https://localhost:44340/api/note/getnotes/' + date.toNumber()).then(response => { notes = response.data })    
+        url + 'getnotes/' + date.toNumber()).then(response => { notes = response.data })    
      return notes;
     
 }
 
 export async function postNote(note: INote, date: DateModel){
     let id : number;
-    await axios.post('https://localhost:44340/api/note/postnote/',{
+    await axios.post(url + 'postnote/',{
         time: note.time,
         event: note.event,
         numberDate: date.toNumber()
@@ -24,7 +23,7 @@ export async function postNote(note: INote, date: DateModel){
 }
 
 export async function deleteNote(id: number){
-    await axios.delete('https://localhost:44340/api/note/deletenote/'+id).catch((error) => console.log(error))
+    await axios.delete(url + 'deletenote/' + id).catch((error) => console.log(error))
 }
 
 
