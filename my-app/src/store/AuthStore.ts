@@ -1,13 +1,21 @@
+import { AuthResponse } from './../models/response/AuthResponse';
 import { throws } from 'assert';
-import { makeAutoObservable } from 'mobx';
+import { action, makeAutoObservable, makeObservable, observable } from 'mobx';
 import AuthService from '../Api/AuthService';
 import { IUser } from './../models/types/IUser';
+import { API_URL } from '../Api/AuthInterceptors';
+import axios from 'axios';
 export default class AuthStore {
     user = {} as IUser;
     isAuth = false;
 
     constructor(){
-        makeAutoObservable(this);
+        makeObservable(this, {
+            user: observable,
+            isAuth: observable,
+            setAuth: action,
+            setUser: action
+        })
     }
 
     setAuth(bool: boolean) {
@@ -17,6 +25,7 @@ export default class AuthStore {
     setUser(user: IUser){
         this.user = user;
     }
+    
 
     async login(email: string, password: string){
         try{
@@ -49,6 +58,18 @@ export default class AuthStore {
             localStorage.removeItem('token');
             this.setAuth(false);
             this.setUser({} as IUser);
+        }
+        catch(e){
+            console.log(e.response?.data?.message);
+        }
+    }
+    async checkAuth(){
+        try{
+            const response = await axios.get<AuthResponse>(API_URL + 'checkToken/' + localStorage.getItem('token'), {withCredentials: true});
+            console.log(response);
+            localStorage.setItem('token', response.data.accessToken);
+            this.setAuth(true);
+            this.setUser({email: response.data.email, id: response.data.id} as IUser);
         }
         catch(e){
             console.log(e.response?.data?.message);

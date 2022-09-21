@@ -5,7 +5,8 @@ import MySelect from '../components/UI/Select/MySelect';
 import { useFetchDays } from '../hooks/useFetchDays';
 import { useYears } from '../hooks/useYears';
 import { IDay, INote, Months } from '../types/types';
-import './App.scss';
+import '../App.scss';
+import { observer } from 'mobx-react-lite';
 
 
 
@@ -44,4 +45,4 @@ const Calendar = () => {
   );
 };
 
-export default Calendar;
+export default observer(Calendar);

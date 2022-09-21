@@ -1,6 +1,14 @@
 import axios from "axios";
+import { IUser } from "../models/types/IUser";
+import AuthStore from "../store/AuthStore";
 
-const API_URL = "https://localhost:44340/user/";
+export const API_URL = "https://localhost:44340/user/";
+
+let store : AuthStore
+
+export const injectStore = _store => {
+  store = _store
+}
 
 const $api = axios.create({
     withCredentials: true,
@@ -14,9 +22,11 @@ $api.interceptors.request.use((config) => {
 
 $api.interceptors.response.use((config) => {
     return config;
-},async (error) => {
+}, (error) => {
     if(error.response.status === 401) {
         localStorage.removeItem('token');
+        store.setAuth(false);
+        store.setUser({} as IUser);
     }
 })
 

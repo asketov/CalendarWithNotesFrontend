@@ -1,9 +1,12 @@
 import React, { createContext } from 'react';
 import ReactDOM from 'react-dom/client';
+import { injectStore } from './Api/AuthInterceptors';
 import App from './App';
 import AuthStore from './store/AuthStore';
 
+
 const store = new AuthStore();
+injectStore(store);
 
 export const Context = createContext({
   store
