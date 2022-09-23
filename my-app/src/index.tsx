@@ -4,7 +4,6 @@ import { injectStore } from './Api/AuthInterceptors';
 import App from './App';
 import AuthStore from './store/AuthStore';
 
-
 const store = new AuthStore();
 injectStore(store);
 

@@ -1,11 +1,11 @@
 import {  useState } from 'react';
-import MonthComponent from '../components/MonthComponent/MonthComponent';
-import Arrow, { ArrowVariants } from '../components/UI/Arrow/ArrowLeft';
-import MySelect from '../components/UI/Select/MySelect';
-import { useFetchDays } from '../hooks/useFetchDays';
-import { useYears } from '../hooks/useYears';
-import { IDay, INote, Months } from '../types/types';
-import '../App.scss';
+import MonthComponent from '../../components/MonthComponent/MonthComponent';
+import Arrow, { ArrowVariants } from '../../components/UI/Arrow/ArrowLeft';
+import MySelect from '../../components/UI/Select/MySelect';
+import { useFetchDays } from '../../hooks/useFetchDays';
+import { useYears } from '../../hooks/useYears';
+import { IDay, INote, Months } from '../../types/types';
+import './Calendar.scss';
 import { observer } from 'mobx-react-lite';
 
 
