@@ -12,6 +12,9 @@ import Calendar from './pages/Calendar/Calendar';
 import { Context } from './index';
 import { observer } from 'mobx-react-lite';
 import { IUser } from './models/types/IUser';
+import Navbar from './components/UI/Navbar/navbar';
+import AppRouter from './AppRouter';
+import { BrowserRouter } from 'react-router-dom';
 
 
 const App = () => {
@@ -27,18 +30,13 @@ const App = () => {
     store.logout();
   }
 
-  if(!store.isAuth){
-    return(
-        <Login></Login>
-    )
-  }
+
 
   return (
-    <div>
-      <h1>{store.isAuth ? 'Пользователь авторизован' + store.user.email : ''}</h1>
-      <button onClick={() => store.logout()}>Выйти</button>
-      <Calendar></Calendar>
-    </div>
+      <BrowserRouter>
+        <Navbar></Navbar>
+        <AppRouter></AppRouter>
+      </BrowserRouter>
   );
 };
 

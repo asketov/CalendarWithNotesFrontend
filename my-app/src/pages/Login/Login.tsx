@@ -20,13 +20,13 @@ const Login : FC = () => {
                 onChange={e => setEmail(e.target.value)}
                 ></MyInput></div>
                 <div><MyInput
-                type='text'
+                type='password'
                 value={password}
                 placeholder='Password'
                 onChange={e => setPassword(e.target.value)}
                 ></MyInput></div>
                 <MyButton onClick={() => store.login(email,password)}>Login</MyButton>
-                <MyButton onClick={() => store.register(email,password)}>Register</MyButton>
+                {/*<MyButton onClick={() => store.register(email,password)}>Register</MyButton>*/}
             </div>
         </div>
     );
