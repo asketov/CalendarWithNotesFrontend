@@ -22,15 +22,15 @@ const EventsComponent:FC<EventsComponentProps> = ({date, mouseOver}) => {
     const[modalAdditional, setModalAdditional] = useState<boolean>(false);
     const[notes, setNotes] = useState<INote[]>([]);
     useEffect(() => {
-       getNotes(date).then(result =>  setNotes(sortEventsOnTime(result)));
+       getNotes(date).then(result => setNotes(sortEventsOnTime(result)));
     },[])
     let dayPassed: boolean = checkDayPassed(date);
     return (
       <div>
         <FirstEventComponent firstEvent={notes[0]}></FirstEventComponent>
-        <div style={{display: dayPassed || !mouseOver ? 'none' : ''}} className='menuForEvents'> 
+        <div style={{display: !mouseOver ? 'none' : ''}} className='menuForEvents'> 
           <Plus dayPassed={dayPassed} setModal={setModalPlus}></Plus>
-          <Additional visible={notes.length > 0} setModal={setModalAdditional}></Additional>
+          <Additional  visible={notes.length > 0} setModal={setModalAdditional}></Additional>
         </div>
         <MyModal visible={modalPlus} setVisible={setModalPlus}>
           <CreateNote date={date} setVisible={setModalPlus} notes={notes} setNotes={setNotes}></CreateNote>

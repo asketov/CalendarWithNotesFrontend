@@ -30,6 +30,11 @@ const App = () => {
     store.logout();
   }
 
+  if(store.isLoading){
+    return(
+      <div></div>
+    )
+  }
 
 
   return (

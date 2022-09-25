@@ -11,13 +11,13 @@ const Navbar = () => {
     !store.isAuth ?
     
         <div className='navbar'>
-            <Link to="/login">Вход</Link>
-            <Link to="/register">Регистрация</Link>
+            <div className='link_first'><Link to="/login">Вход</Link></div>
+            <div className='link'><Link to="/register">Регистрация</Link></div>
         </div>
     :
     <div className='navbar'>
-            <Link to="/login" onClick={() => store.logout()}>Выйти</Link>
-            <Link to="/calendar">Главная</Link>
+            <div className='link_first'><Link to="/login" onClick={() => store.logout()}>Выйти</Link></div>
+            <div className='link'><Link to="/calendar">Главная</Link></div>
   </div>
     );
     

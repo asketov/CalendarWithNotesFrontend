@@ -1,11 +1,11 @@
 .loginForm{
     display: grid;
-    grid-template-columns: repeat(1, 100px);
-    grid-template-rows: (4, 150px);
     grid-row-gap: 5px;
     justify-content: center;
 }
 
 .login{
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

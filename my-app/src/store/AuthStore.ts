@@ -8,11 +8,13 @@ import axios from 'axios';
 export default class AuthStore {
     user = {} as IUser;
     isAuth = false;
+    isLoading = true;
 
     constructor(){
         makeObservable(this, {
             user: observable,
             isAuth: observable,
+            isLoading: observable,
             setAuth: action,
             setUser: action
         })
@@ -20,6 +22,10 @@ export default class AuthStore {
 
     setAuth(bool: boolean) {
         this.isAuth = bool;
+    }
+
+    setLoading(bool: boolean) {
+        this.isLoading = bool;
     }
 
     setUser(user: IUser){
@@ -73,6 +79,10 @@ export default class AuthStore {
         }
         catch(e){
             console.log(e.response?.data?.message);
+            
+        }
+        finally{
+            this.setLoading(false);
         }
     }
 }
