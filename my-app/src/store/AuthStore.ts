@@ -9,12 +9,14 @@ export default class AuthStore {
     user = {} as IUser;
     isAuth = false;
     isLoading = true;
+    statusMessage = '';
 
     constructor(){
         makeObservable(this, {
             user: observable,
             isAuth: observable,
             isLoading: observable,
+            statusMessage: observable,
             setAuth: action,
             setUser: action
         })
@@ -33,29 +35,32 @@ export default class AuthStore {
     }
     
 
-    async login(email: string, password: string){
+    async login(email: string, password: string) : Promise<boolean> {
         try{
             const response = await AuthService.login(email,password);
             localStorage.setItem('token', response.data.accessToken);
-            console.log(response);
             this.setAuth(true);
             this.setUser({email: response.data.email, id: response.data.id} as IUser);
+            return true;
         }
         catch(e){
-            console.log(e.response?.data?.message);
+            console.log(e.response);
+            return false;
         }
     }
 
-    async register(email: string, password: string){
+    async register(email: string, password: string) : Promise<boolean> {
         try{
             const response = await AuthService.register(email,password);
             localStorage.setItem('token', response.data.accessToken);
             console.log(response);
             this.setAuth(true);
             this.setUser({email: response.data.email, id: response.data.id} as IUser);
+            return true;
         }
         catch(e){
             console.log(e.response?.data?.message);
+            return false;
         }
     }
     async logout(){
@@ -66,7 +71,7 @@ export default class AuthStore {
             this.setUser({} as IUser);
         }
         catch(e){
-            console.log(e.response?.data?.message);
+            console.log(e.response);
         }
     }
     async checkAuth(){
@@ -78,8 +83,7 @@ export default class AuthStore {
             this.setUser({email: response.data.email, id: response.data.id} as IUser);
         }
         catch(e){
-            console.log(e.response?.data?.message);
-            
+            console.log(e.response);
         }
         finally{
             this.setLoading(false);

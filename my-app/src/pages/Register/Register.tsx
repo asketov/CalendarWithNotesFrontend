@@ -1,44 +1,43 @@
-import { observer } from 'mobx-react-lite';
-import React, { FC, useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Context } from '../..';
 import MyButton from '../../components/UI/Button/MyButton';
 import MyInput from '../../components/UI/Input/MyInput';
-import './Login.scss';
 
-const Login : FC = () => {
+const Register = () => {
     const [email, setEmail] = useState<string>('');
     const[password, setPassword] = useState<string>('');
     const{store} = useContext(Context);
     const[statusMessage, setStatusMessage] = useState<string>('');
 
-    async function login()
+    async function register()
     {
-        if(password.length < 6) return setStatusMessage('Пароль должен быть больше 6 символов');
-        let success : boolean = await store.login(email,password);
-        if(!success) setStatusMessage('Логин или пароль неверны');
+        let success : boolean = await store.register(email,password);
+        if(!success){
+            setStatusMessage('Пользователь с таким логином уже существует');
+        }
     }
 
     return (
-        <div className='login'>
+        <div className='register'>
             <div className='loginForm'>
                 <div><MyInput
                 type='text'
                 value={email}
                 placeholder='Email'
-                onChange={e => {setEmail(e.target.value); setStatusMessage('')}}
+                onChange={e => setEmail(e.target.value)}
                 ></MyInput></div>
                 <div><MyInput
                 type='password'
                 value={password}
                 placeholder='Password'
-                onChange={e => {setPassword(e.target.value); setStatusMessage('')}}
+                onChange={e => setPassword(e.target.value)}
                 ></MyInput></div>
-                <div style={{color: 'red', textAlign:'center'}}>{statusMessage}</div>
-                <MyButton onClick={() => login()}>Login</MyButton>
+                <div>{statusMessage}</div>
+                <MyButton onClick={() => register()}>Register</MyButton>
                 {/*<MyButton onClick={() => store.register(email,password)}>Register</MyButton>*/}
             </div>
         </div>
     );
 };
 
-export default Login;
+export default Register;

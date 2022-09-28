@@ -1,5 +1,6 @@
 import Calendar from "../pages/Calendar/Calendar";
 import Login from "../pages/Login/Login";
+import Register from "../pages/Register/Register";
 
 
 export const privateRoutes = [
@@ -9,4 +10,5 @@ export const privateRoutes = [
 
 export const publicRoutes = [
     {path: '/Login', component: Login, exact: true},
+    {path: '/Register', component: Register, exact: true}
 ]
