@@ -13,7 +13,6 @@ const Login : FC = () => {
 
     async function login()
     {
-        if(password.length < 6) return setStatusMessage('Пароль должен быть больше 6 символов');
         let success : boolean = await store.login(email,password);
         if(!success) setStatusMessage('Логин или пароль неверны');
     }

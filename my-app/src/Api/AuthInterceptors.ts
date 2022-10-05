@@ -11,7 +11,7 @@ export const injectStore = _store => {
 }
 
 const $api = axios.create({
-    withCredentials: true,
+    
     baseURL: API_URL
 })
 

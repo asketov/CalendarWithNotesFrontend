@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Context } from '../..';
 import MyButton from '../../components/UI/Button/MyButton';
 import MyInput from '../../components/UI/Input/MyInput';
+import './Register.scss';
 
 const Register = () => {
     const [email, setEmail] = useState<string>('');
@@ -11,6 +12,7 @@ const Register = () => {
 
     async function register()
     {
+        if(password.length < 6) return setStatusMessage('Пароль должен быть больше 6 символов');
         let success : boolean = await store.register(email,password);
         if(!success){
             setStatusMessage('Пользователь с таким логином уже существует');
@@ -19,7 +21,7 @@ const Register = () => {
 
     return (
         <div className='register'>
-            <div className='loginForm'>
+            <div className='registerForm'>
                 <div><MyInput
                 type='text'
                 value={email}
@@ -32,9 +34,8 @@ const Register = () => {
                 placeholder='Password'
                 onChange={e => setPassword(e.target.value)}
                 ></MyInput></div>
-                <div>{statusMessage}</div>
+                <div style={{color: 'red'}}>{statusMessage}</div>
                 <MyButton onClick={() => register()}>Register</MyButton>
-                {/*<MyButton onClick={() => store.register(email,password)}>Register</MyButton>*/}
             </div>
         </div>
     );
